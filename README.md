@@ -6,3 +6,9 @@ A bridge between libigl's mesh representation and ImatiSTL's.
 
 Requires CGAL to be installed on the system (`external/ImatiSTL.cmake`)
 
+```
+mkdir build
+cd build
+cmake ..
+make
+```
