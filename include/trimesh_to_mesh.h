@@ -10,7 +10,7 @@ namespace imatistl {
         typename DerivedV,
         typename DerivedF>
     void trimesh_to_mesh(
-        IMATI_STL::TriMesh & T,
+        const IMATI_STL::TriMesh & T,
         Eigen::PlainObjectBase<DerivedV> & V,
         Eigen::PlainObjectBase<DerivedF> & F
     ) {
