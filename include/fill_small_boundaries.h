@@ -8,6 +8,12 @@
 #include "trimesh_to_mesh.h"
 
 namespace imatistl {
+
+    void fill_small_boundaries(IMATI_STL::TriMesh & T) {
+        T.fillSmallBoundaries();
+        T.deselectTriangles();
+    }
+
     template <
         typename DerivedV,
         typename DerivedF>
@@ -15,12 +21,11 @@ namespace imatistl {
         const Eigen::PlainObjectBase<DerivedV> & V,
         const Eigen::PlainObjectBase<DerivedF> & F,
         Eigen::PlainObjectBase<DerivedV> & VV,
-        Eigen::PlainObjectBase<DerivedF> & FF,
+        Eigen::PlainObjectBase<DerivedF> & FF
     ) {
         IMATI_STL::TriMesh T;
         mesh_to_trimesh(V, F, T);
-        T.fillSmallBoundaries();
-        T.deselectTriangles();
+        fill_small_boundaries(T);
         trimesh_to_mesh(T, VV, FF);
     }
 }
