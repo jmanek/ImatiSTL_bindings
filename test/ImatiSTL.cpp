@@ -4,6 +4,7 @@
 #include <igl/writeOBJ.h>
 #include "exact_outer_hull.h"
 #include <iostream>
+
 int main() { 
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
@@ -11,11 +12,9 @@ int main() {
     IMATI_STL::TriMesh T;
     Eigen::MatrixXd VV;
     Eigen::MatrixXi FF;
-    std::cout<< V.rows() <<std::endl;
-    std::cout<< F.rows() <<std::endl;
+    std::cout<< V.rows() << std::endl;
+    std::cout<< F.rows() << std::endl;
     imatistl::exact_outer_hull(V,F,VV,FF, 0.01);
     igl::writeOBJ("box_outer_hull.obj", VV, FF);
-
     return 0;
-    
 }

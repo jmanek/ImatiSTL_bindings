@@ -1,7 +1,6 @@
 #ifndef IMATISTL_MESH_TO_TRIMESH_H
 #define IMATISTL_MESH_TO_TRIMESH_H
 
-#include <iostream>
 #include <Eigen/Core>
 #include <imatistl.h>
 
