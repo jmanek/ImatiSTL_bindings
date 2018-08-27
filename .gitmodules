@@ -1,0 +1,9 @@
+[submodule "external/libigl"]
+	path = external/libigl
+	url = https://github.com/libigl/libigl.git
+[submodule "external/ImatiSTL"]
+	path = external/ImatiSTL
+	url = https://github.com/qnzhou/ImatiSTL.git
+[submodule "external/eigen-git-mirror"]
+	path = external/eigen-git-mirror
+	url = https://github.com/eigenteam/eigen-git-mirror.git
