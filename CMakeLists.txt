@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fpermissive -DIS64BITPLATFOR
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Os")
 
-set(IMATISTL_SOUCE_DIR ImatiSTL)
+set(IMATISTL_SOUCE_DIR external/ImatiSTL)
 include(external/ImatiSTL.cmake)
 
 include_directories(external/libigl/include)
