@@ -22,7 +22,7 @@ namespace imatistl {
         if (t < 0) t = T.bboxLongestDiagonal() / 1000.0; 
         IMATI_STL::coord _t(t);
         int n = 0, it = 1;
-        const double ea = T.area( ) * 1.0e-6;
+        const double ea = T.area() * 1.0e-6;
 
         do {
             T.safeCoordBackApproximation();	
