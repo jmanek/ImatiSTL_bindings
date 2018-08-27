@@ -8,13 +8,15 @@
 int main() { 
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
-    igl::readOBJ("../test/box.obj", V, F);
+    igl::readOBJ("../test/spheres.obj", V, F);
     IMATI_STL::TriMesh T;
     Eigen::MatrixXd VV;
     Eigen::MatrixXi FF;
-    std::cout<< V.rows() << std::endl;
-    std::cout<< F.rows() << std::endl;
+    std::cout << "Vertices: " << V.rows() << std::endl;
+    std::cout << "Faces: " << F.rows() << std::endl;
     imatistl::exact_outer_hull(V,F,VV,FF, 0.01);
-    igl::writeOBJ("box_outer_hull.obj", VV, FF);
+    std::cout << "Vertices: " << VV.rows() << std::endl;
+    std::cout << "Faces: " << FF.rows() << std::endl;
+    igl::writeOBJ("spheres_outer_hull.obj", VV, FF);
     return 0;
 }
