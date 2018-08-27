@@ -6,7 +6,7 @@
 #include "mesh_to_trimesh.h"
 #include "trimesh_to_mesh.h"
 
-   template <
+template <
     typename DerivedV,
     typename DerivedF>
 void exact_outer_hull(
@@ -15,13 +15,13 @@ void exact_outer_hull(
     Eigen::PlainObjectBase<DerivedV> & VV,
     Eigen::PlainObjectBase<DerivedF> & FF,
     double t =-1.0
-)  {
+) {
     IMATI_STL::TriMesh T;
     mesh_to_trimesh(V, F, T);
     if (t < 0) t = T.bboxLongestDiagonal() / 1000.0; 
     IMATI_STL::coord _t(t);
     int n = 0, it = 1;
-    double ea = T.area( ) * 1.0e-6;x
+    const double ea = T.area( ) * 1.0e-6;
 
     do {
         T.safeCoordBackApproximation();	
@@ -35,7 +35,7 @@ void exact_outer_hull(
         D->removeRedundantVertices();
         D->delaunizeFlatAreas();
 
-        if (n != 0 && it <4) { 
+        if (n != 0 && it < 4) { 
             D->toThinShell(_t); 
             T.moveMeshElements(D); 
         }

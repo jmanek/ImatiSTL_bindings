@@ -22,6 +22,7 @@ void mesh_to_trimesh(
     for(int ii = 0; ii < F.rows(); ii++) {
         T.CreateIndexedTriangle(EV, F(ii, 0), F(ii, 1), F(ii, 2));
     }
+    // T.rebuildConnectivity();
 }
 
 #endif
