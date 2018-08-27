@@ -24,7 +24,7 @@ namespace imatistl {
     ) {
         IMATI_STL::TriMesh T;
         mesh_to_trimesh(V, F, T);
-        cut_intersections(T);y
+        cut_intersections(T);
         trimesh_to_mesh(T, VV, FF);
     }
 }
