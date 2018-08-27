@@ -1,6 +1,6 @@
 # ImatiSTL_bindings
 
-A bridge between libigl's mesh representation (Eigen) and ImatiSTL's.  
+A bridge between libigl's mesh representation and ImatiSTL's.  
 
 `git clone https://github.com/jmanek/ImatiSTL_bindings.git --recursive`
 
