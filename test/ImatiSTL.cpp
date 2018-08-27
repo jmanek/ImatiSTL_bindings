@@ -35,4 +35,13 @@ int main() {
     std::cout << "Vertices: " << VV.rows() << std::endl;
     std::cout << "Faces: " << FF.rows() << std::endl;
     igl::writeOBJ("spheres_outer_hull.obj", VV, FF);
+
+    igl::readOBJ("../test/demoman.obj", V, F);
+    imatistl::mesh_to_trimesh(V, F, T);
+    T.printReport();
+    imatistl::fill_small_boundaries(T);
+    imatistl::exact_outer_hull(T, 0.1);
+    T.printReport();
+    imatistl::trimesh_to_mesh(T, VV, FF);
+    igl::writeOBJ("demoman_repaired.obj", VV, FF);
 }
