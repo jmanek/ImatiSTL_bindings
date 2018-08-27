@@ -23,6 +23,11 @@ namespace imatistl {
         for(int ii = 0; ii < F.rows(); ii++) {
             T.CreateIndexedTriangle(EV, F(ii, 0), F(ii, 1), F(ii, 2));
         }
+        for(int ii = 0; ii < V.rows(); ii++)
+        {
+            delete EV[ii];
+        }
+        free(EV);
         T.rebuildConnectivity();
     }
 }
