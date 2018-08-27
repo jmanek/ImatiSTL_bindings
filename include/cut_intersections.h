@@ -7,19 +7,21 @@
 #include "mesh_to_trimesh.h"
 #include "trimesh_to_mesh.h"
 
-template <
-    typename DerivedV,
-    typename DerivedF>
-void cut_intersections(
-    const Eigen::PlainObjectBase<DerivedV> & V,
-    const Eigen::PlainObjectBase<DerivedF> & F,
-    Eigen::PlainObjectBase<DerivedV> & VV,
-    Eigen::PlainObjectBase<DerivedF> & FF,
-) {
-    IMATI_STL::TriMesh T;
-    mesh_to_trimesh(V, F, T);
-    T.cutIntersections();
-    trimesh_to_mesh(T, VV, FF);
+namespace imatistl {
+    template <
+        typename DerivedV,
+        typename DerivedF>
+    void cut_intersections(
+        const Eigen::PlainObjectBase<DerivedV> & V,
+        const Eigen::PlainObjectBase<DerivedF> & F,
+        Eigen::PlainObjectBase<DerivedV> & VV,
+        Eigen::PlainObjectBase<DerivedF> & FF,
+    ) {
+        IMATI_STL::TriMesh T;
+        mesh_to_trimesh(V, F, T);
+        T.cutIntersections();
+        trimesh_to_mesh(T, VV, FF);
+    }
 }
 
 #endif
