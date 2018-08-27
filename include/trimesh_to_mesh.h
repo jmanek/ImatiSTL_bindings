@@ -18,7 +18,7 @@ namespace imatistl {
         IMATI_STL::Node *n;
         IMATI_STL::Vertex *v;
         int ii = 0;
-        for (n = T.V.head(); n != NULL; n=n->next()) {
+        for (n = T.V.head(); n != NULL; n = n->next()) {
             v = (IMATI_STL::Vertex *) n->data;
             V(ii, 0) = v->x.toDouble();
             V(ii, 1) = v->y.toDouble();
@@ -28,14 +28,14 @@ namespace imatistl {
 
         IMATI_STL::Triangle *t;
         ii = 0;
-        for (n = T.T.head(); n != NULL; n=n->next()) {
+        for (n = T.T.head(); n != NULL; n = n->next()) {
             t = (IMATI_STL::Triangle *) n->data;
             F(ii, 0) = t->v1()->x.toInt();
             F(ii, 1) = t->v2()->x.toInt();
             F(ii++, 2) = t->v3()->x.toInt();
         }
 
-        for (n = T.V.head(); n != NULL; n=n->next()) {
+        for (n = T.V.head(); n != NULL; n = n->next()) {
             v = (IMATI_STL::Vertex *) n->data;
             v->x = V(v->x.toInt(), 0);
         }
