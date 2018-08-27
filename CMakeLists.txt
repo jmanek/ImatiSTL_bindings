@@ -14,5 +14,5 @@ include_directories(external/libigl/include)
 include_directories(external/eigen-git-mirror)
 
 include_directories(include)
-ADD_EXECUTABLE(imatistl_test test/ImatiSTL.cpp)
-TARGET_LINK_LIBRARIES(imatistl_test ImatiSTL)
+add_executable(imatistl_test test/ImatiSTL.cpp)
+target_link_libraries(imatistl_test ImatiSTL)
