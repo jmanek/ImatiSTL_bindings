@@ -16,7 +16,7 @@ namespace imatistl {
 
         do {
             T.safeCoordBackApproximation();	
-            auto *D = T.computeOuterHull(false, 0);
+            auto D = T.computeOuterHull(false, 0);
             n = D->removeSmallestComponents(ea);
             n = T.removeSmallestComponents(ea);
             n = D->T.numels();

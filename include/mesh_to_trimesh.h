@@ -14,9 +14,9 @@ namespace imatistl {
         IMATI_STL::TriMesh & T
     ) {
         T = IMATI_STL::TriMesh();
-        auto **EV = (IMATI_STL::ExtVertex **)malloc(sizeof(IMATI_STL::ExtVertex *) * V.rows());
+        auto EV = (IMATI_STL::ExtVertex **)malloc(sizeof(IMATI_STL::ExtVertex *) * V.rows());
         for(int ii = 0; ii < V.rows(); ii++) {
-            auto *v = T.newVertex(V(ii, 0), V(ii, 1), V(ii, 2));
+            auto v = T.newVertex(V(ii, 0), V(ii, 1), V(ii, 2));
             T.V.appendTail(v);
             EV[ii]  = new IMATI_STL::ExtVertex(v);
         }
