@@ -9,17 +9,16 @@
 namespace imatistl {
 
     #define OH_ITERATIONS 4
-    #define OH_EPSILON_AREA 1.0e-6
     #define OH_DEFAULT_THICKNESS 1000.0
 
-    void exact_outer_hull(IMATI_STL::TriMesh & T, double t=-1.0) {
+    void exact_outer_hull(IMATI_STL::TriMesh & T, double t=-1.0, double ea=1.0e-6, int it=4) {
         if (t < 0) t = T.bboxLongestDiagonal() / OH_DEFAULT_THICKNESS;
         IMATI_STL::coord _t(t);
-        const double ea = T.area() * OH_EPSILON_AREA;
+        ea = T.area() * ea;
 
-        for (int n = -1, it = 0; n != 0 && it < OH_ITERATIONS; ++it) {
+        for (int n = -1; n != 0 && it > 0; --it) {
             T.safeCoordBackApproximation();	
-            auto D = T.computeOuterHull(false, 0);
+            auto D = T.computeOuterHull();
             n = D->removeSmallestComponents(ea);
             n = T.removeSmallestComponents(ea);
             n = D->T.numels();
@@ -29,7 +28,7 @@ namespace imatistl {
             D->removeRedundantVertices();
             D->delaunizeFlatAreas();
 
-            if (n != 0 && it < OH_ITERATIONS - 1) { 
+            if (n != 0 && it != 0) { 
                 D->toThinShell(_t); 
                 T.moveMeshElements(D); 
             }
@@ -45,11 +44,13 @@ namespace imatistl {
         const Eigen::PlainObjectBase<DerivedF> & F,
         Eigen::PlainObjectBase<DerivedV> & VV,
         Eigen::PlainObjectBase<DerivedF> & FF,
-        double t=-1.0
+        double t=-1.0,
+        double ea=1.0e-6,
+        int it=4
     ) {
         IMATI_STL::TriMesh T;
         mesh_to_trimesh(V, F, T);
-        exact_outer_hull(T, t);
+        exact_outer_hull(T, t, ea, it);
         trimesh_to_mesh(T, VV, FF);
     }
 }
