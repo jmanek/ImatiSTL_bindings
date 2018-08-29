@@ -11,10 +11,9 @@ namespace imatistl {
     void exact_outer_hull(IMATI_STL::TriMesh & T, double t=-1.0) {
         if (t < 0) t = T.bboxLongestDiagonal() / 1000.0; 
         IMATI_STL::coord _t(t);
-        int n = 0, it = 1;
         const double ea = T.area() * 1.0e-6;
 
-        do {
+        for (int n = -1, it = 1; n != 0 && it < 5; ++it) {
             T.safeCoordBackApproximation();	
             auto D = T.computeOuterHull(false, 0);
             n = D->removeSmallestComponents(ea);
@@ -30,8 +29,8 @@ namespace imatistl {
                 D->toThinShell(_t); 
                 T.moveMeshElements(D); 
             }
-            T.deselectTriangles();
-        } while (n != 0 && it < 4);
+        } 
+        T.deselectTriangles();
     }
 
     template <
