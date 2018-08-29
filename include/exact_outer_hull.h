@@ -8,11 +8,8 @@
 
 namespace imatistl {
 
-    #define OH_ITERATIONS 4
-    #define OH_DEFAULT_THICKNESS 1000.0
-
     void exact_outer_hull(IMATI_STL::TriMesh & T, double t=-1.0, double ea=1.0e-6, int it=4) {
-        if (t < 0) t = T.bboxLongestDiagonal() / OH_DEFAULT_THICKNESS;
+        if (t < 0) t = T.bboxLongestDiagonal() / 1000.0;
         IMATI_STL::coord _t(t);
         ea = T.area() * ea;
 
