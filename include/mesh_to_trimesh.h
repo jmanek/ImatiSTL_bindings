@@ -21,8 +21,7 @@ namespace imatistl {
         for(int ii = 0; ii < V.rows(); ii++) {
             auto v = T.newVertex(V(ii, 0), V(ii, 1), V(ii, 2));
             T.V.appendTail(v);
-            EVp[ii]  = std::make_shared<IMATI_STL::ExtVertex>(v);
-            EV[ii]  = EVp[ii].get();
+            EV[ii] = (EVp[ii] = std::make_shared<IMATI_STL::ExtVertex>(v)).get();
         }
         for(int ii = 0; ii < F.rows(); ii++) {
             T.CreateIndexedTriangle(EV.data(), F(ii, 0), F(ii, 1), F(ii, 2));
