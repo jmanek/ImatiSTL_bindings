@@ -3,6 +3,8 @@
 
 #include <Eigen/Core>
 #include <imatistl.h>
+#include <vector>
+#include <memory>
 
 namespace imatistl {
     template <
@@ -14,19 +16,17 @@ namespace imatistl {
         IMATI_STL::TriMesh & T
     ) {
         T = IMATI_STL::TriMesh();
-        auto EV = (IMATI_STL::ExtVertex **)malloc(sizeof(IMATI_STL::ExtVertex *) * V.rows());
+        std::vector<IMATI_STL::ExtVertex *> EV(V.rows()); 
+        std::vector<std::shared_ptr<IMATI_STL::ExtVertex>> EVp(V.rows()); // To avoid malloc/new
         for(int ii = 0; ii < V.rows(); ii++) {
             auto v = T.newVertex(V(ii, 0), V(ii, 1), V(ii, 2));
             T.V.appendTail(v);
-            EV[ii]  = new IMATI_STL::ExtVertex(v);
+            EVp[ii]  = std::make_shared<IMATI_STL::ExtVertex>(v);
+            EV[ii]  = EVp[ii].get();
         }
         for(int ii = 0; ii < F.rows(); ii++) {
-            T.CreateIndexedTriangle(EV, F(ii, 0), F(ii, 1), F(ii, 2));
+            T.CreateIndexedTriangle(EV.data(), F(ii, 0), F(ii, 1), F(ii, 2));
         }
-        for(int ii = 0; ii < V.rows(); ii++) {
-            delete EV[ii];
-        }
-        free(EV);
         T.rebuildConnectivity();
     }
 }
