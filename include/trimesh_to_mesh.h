@@ -22,10 +22,16 @@ namespace imatistl {
         int ii;
         for (n = T.V.head(), ii = 0; n != NULL; n = n->next(), ++ii) {
             auto v = (IMATI_STL::Vertex *) n->data;
+            vi[v] = ii;
+#ifdef USE_HYBRID_KERNEL
             V(ii, 0) = v->x.toDouble();
             V(ii, 1) = v->y.toDouble();
             V(ii, 2) = v->z.toDouble();
-            vi[v] = ii;
+#else
+            V(ii, 0) = v->x;
+            V(ii, 1) = v->y;
+            V(ii, 2) = v->z;
+#endif
         }
 
         for (n = T.T.head(), ii = 0; n != NULL; n = n->next(), ++ii) {
